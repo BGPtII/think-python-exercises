@@ -1,3 +1,15 @@
+def count_letter_a_in_banana():
+    """Uses the count method to print the number of letter 'a's in the word banana"""
+    print('banana'.count('a'))
+
+
+def any_lowercase(word):
+    for char in word:
+        if char.islower():
+            return True
+    return False
+
+
 def rotate_word(s, amount):
     """Takes a string and an integer as parameters, and returns a new string that contains the letters from the
     original string rotated by the given amount"""
