@@ -1,9 +1,10 @@
 def count_letter_a_in_banana():
-    """Uses the count method to print the number of letter 'a's in the word banana"""
-    print('banana'.count('a'))
+    """Uses the count method to return the number of letter 'a's in the word banana"""
+    return 'banana'.count('a')
 
 
 def any_lowercase(word):
+    """Returns whether the word contains a lowercase letter"""
     for char in word:
         if char.islower():
             return True

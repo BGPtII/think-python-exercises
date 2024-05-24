@@ -16,7 +16,7 @@ def inverse_dictionary(dict_sample):
 
 
 def has_duplicates(sample_list):
-    """Uses a dictionary to return True if the sample_list has any duplicates"""
+    """Uses a dictionary to return whether the sample list has any duplicates"""
     dupe_dict = {}
     for list_item in sample_list:
         if list_item in dupe_dict:

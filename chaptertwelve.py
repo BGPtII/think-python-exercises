@@ -1,21 +1,14 @@
-def sum_all(*numbers):
-    """Takes any number of arguments and returns their sum"""
-    return sum(numbers)
-
-
-def most_frequent(text):
-    """Takes a string and prints the letters in decreasing order of frequency"""
+def letter_frequency(word):
+    """Returns the letter-to-frequency in decreasing order in a word"""
     letter_to_frequency = dict()
-    for letter in text:
-        letter_to_frequency[text.count(letter)] = letter
-    descending_frequency = list(sorted(letter_to_frequency.keys(), reverse=True))
-    for frequency in descending_frequency:
-        print(letter_to_frequency[frequency])
+    for letter in word:
+        letter_to_frequency[letter] = letter_to_frequency.get(letter, 0) + 1
+    return dict(sorted(letter_to_frequency.items(), key=lambda x: x[1], reverse=True))
 
 
-def print_anagrams(word_file):
-    """Reads from a word list and prints the collections of anagrams"""
-    with open(word_file) as file:
+def get_anagrams(word_file_path):
+    """Reads from a word list file and returns the collections of all anagrams"""
+    with open(word_file_path) as file:
         anagram_dict = dict()
         for word in file:
             word = word.strip()
@@ -24,25 +17,9 @@ def print_anagrams(word_file):
                 anagram_dict[formatted_word] = [word]
             else:
                 anagram_dict[formatted_word].append(word.strip())
-    for anagram_list in anagram_dict.values():
-        if len(anagram_list) > 1:
-            print(anagram_list)
+    return list(anagram_dict.values())
 
 
-def find_longest_anagram_list(word_file):
-    """Reads from a word lists and prints the collections all anagrams from longest to shortest collection."""
-    with open(word_file) as file:
-        anagram_dict = dict()
-        for word in file:
-            word = word.strip()
-            formatted_word = ''.join(sorted(word))
-            if formatted_word not in anagram_dict:
-                anagram_dict[formatted_word] = [word]
-            else:
-                anagram_dict[formatted_word].append(word)
-    sorted_anagram_values = []
-    for anagram_list in anagram_dict.values():
-        if len(anagram_list) > 1:
-            sorted_anagram_values.append(tuple(anagram_list))
-    for anagram_list in sorted(sorted_anagram_values, key=len, reverse=True):
-        print(anagram_list)
+def get_anagrams_descending_order(word_file_path):
+    """Reads from a word lists and returns a collections of all anagrams from longest to shortest"""
+    return sorted(get_anagrams(word_file_path), key=len, reverse=True)

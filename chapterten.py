@@ -1,6 +1,3 @@
-import random
-
-
 def nested_sum(outer_list):
     """Takes a list of lists of integers and adds up the elements from all the nested lists"""
     total_sum = 0
@@ -41,19 +38,19 @@ def is_sorted(list_to_check):
 
 
 def is_anagram(word1, word2):
-    """Takes two strings and returns True if they are anagrams"""
+    """Takes two strings and returns whether they are anagrams without any whitespace"""
     word1 = word1.replace(' ', '').lower()
     word2 = word2.replace(' ', '').lower()
     return sorted(word1) == sorted(word2)
 
 
 def has_duplicates(list_to_check):
-    """Returns True if a list contains duplicate entries"""
+    """Returns whether a list contains duplicate entries"""
     return len(list_to_check) != len(set(list_to_check))
 
 
 def build_word_list(word_file_name):
-    """Builds a list of words from a file containing words"""
+    """Builds & returns a list of words from a file containing words"""
     word_list = []
     with open(word_file_name, 'r') as words:
         for word in words:
@@ -78,8 +75,10 @@ def in_bisect(sorted_word_list, word):
 
 def reverse_pair(word_list):
     """Two words are a reverse pair if each is the reverse of the other;
-    prints all the reverse pairs in a word list"""
+    returns all the reverse pairs in a word list"""
+    reverse_pairs = set()
     for word in word_list:
         reverse_word = word[::-1]
         if reverse_word in word_list and reverse_word != word:
-            print(word)
+            reverse_pairs.add(word)
+    return reverse_pairs
